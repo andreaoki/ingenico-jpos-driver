@@ -137,8 +137,13 @@ public class IngenicoMICRService implements MICRService110 {
 		if (this.internalThread.getLines().size() > 0) {
 			this.dataEvent = new DataEvent(this, 0);
 			this.dataCount = 1;
-
-			this.rawData = new String(this.internalThread.getLines().get(0));
+			String data = new String(this.internalThread.getLines().get(0));
+			if (data.charAt(13) == 0x30 || data.charAt(13) == 0x31) {
+				//CCP - CMC7 is 20 chars
+				this.rawData = data.substring(14);
+			} else {
+				this.rawData = data;
+			}
 
 			if (cb != null) {
 				this.cb.fireDataEvent(this.dataEvent);

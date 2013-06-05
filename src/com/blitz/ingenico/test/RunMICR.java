@@ -1,8 +1,5 @@
 package com.blitz.ingenico.test;
 
-import java.net.URL;
-import java.net.URLClassLoader;
-
 import jpos.JposConst;
 import jpos.JposException;
 import jpos.MICR;
